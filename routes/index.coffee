@@ -1,12 +1,17 @@
 http = require('http')
 
 exports.index = (req, res) ->
-  options = { host: 'publico.pt', path: '/' }
+  options = { host: 'google.com', path: '/' }
   
-  callback = (response) ->
-    response.on 'data', -> (chunk) str += chunk
-    response.on 'end', -> console.log(str)
+  str = ''
 
-  pub = http.request(options, callback).end
-  res.render('index', { title: pub.read })
+  callback = (response) ->
+    response.on 'data', (chunk) ->
+      str += chunk
+    response.on 'end', -> 
+      console.log str
+      str
+
+  pub = http.request(options, callback).end()
+  res.render('index', { title: 'Ola' })
   
