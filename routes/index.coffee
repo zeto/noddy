@@ -1,4 +1,5 @@
 http = require('http')
+Tracker = require('../lib/tracker') 
 
 exports.index = (req, res) ->
   options = { host: 'google.com', path: '/' }
@@ -13,5 +14,5 @@ exports.index = (req, res) ->
       str
 
   pub = http.request(options, callback).end()
-  res.render('index', { title: 'Ola' })
+  res.render('index', { title: 'Ola', clients: (new Tracker).clients })
   
