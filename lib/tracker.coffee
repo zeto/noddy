@@ -1,6 +1,6 @@
 class Tracker
   constructor: ->
-    @clients = []
+    @clients = {}
 
   clients: ->
     @clients
